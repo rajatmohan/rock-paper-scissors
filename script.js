@@ -63,7 +63,7 @@ const game = ()=> {
     let computerScore = 0;
     let totalRounds = 5;
     for(let round = 1; round <= totalRounds; round++) {
-        let playerSelection = prompt("Enter your choice");
+        let playerSelection = prompt("Enter your choice (rock, paper, scissors");
         let computerSelection = getComputerChoice();
 
         let result = playRound(playerSelection, computerSelection);
