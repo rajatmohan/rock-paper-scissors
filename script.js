@@ -55,3 +55,26 @@ const displayGameResult = (playerScore, computerScore, totalRounds) => {
         console.log(`You loose the game, your won ${playerScore} rounds computer won ${computerScore} out of total ${totalRounds} rounds.`);
     }
 }
+
+
+let playerScore = 0;
+let computerScore = 0;
+
+let options = document.querySelectorAll(".option")
+let playerScoreEle = document.querySelector("#playerScore")
+let computerScoreEle = document.querySelector("#computerScore")
+
+options.forEach(option => {
+    option.addEventListener("click", (event) => {
+        let playerSelection = option.getAttribute("key")
+        let computerSelection = getComputerChoice();
+        let result = playRound(playerSelection, computerSelection);
+        
+        playerScore += (result > 0)? 1: 0;
+        computerScore += (result < 0)? 1: 0;
+
+        playerScoreEle.textContent = playerScore;
+        computerScoreEle.textContent = computerScore;
+        
+    })
+})
