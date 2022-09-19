@@ -1,0 +1,60 @@
+html, body {
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+header, footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header {
+    height: 75px;
+    background-color: aqua;
+}
+
+.footer {
+    height: 25px;
+}
+
+main {
+    flex: 1;
+    background-color: antiquewhite;
+}
+
+.mainHeader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.optionsContainer {
+    display: flex;
+    gap: 3px;
+    justify-content: center;
+    align-items: center;
+}
+
+figure {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;    
+    gap: 4px;
+}
+
+img {
+    height: 100px;
+    width: auto;
+    margin: 2px;
+}
