@@ -55,23 +55,3 @@ const displayGameResult = (playerScore, computerScore, totalRounds) => {
         console.log(`You loose the game, your won ${playerScore} rounds computer won ${computerScore} out of total ${totalRounds} rounds.`);
     }
 }
-
-const game = ()=> {
-    // playerScore stores number of rounds player won.
-    let playerScore = 0;
-    // computerScore store number of rounds computer won.
-    let computerScore = 0;
-    let totalRounds = 5;
-    for(let round = 1; round <= totalRounds; round++) {
-        let playerSelection = prompt("Enter your choice (rock, paper, scissors");
-        let computerSelection = getComputerChoice();
-
-        let result = playRound(playerSelection, computerSelection);
-        displayRoundResult(playerSelection, computerSelection, result);
-        playerScore += ((result > 0)? 1: 0);
-        computerScore += ((result < 0)? 1: 0);
-    }
-    displayGameResult(playerScore, computerScore, totalRounds)
-}
-
-game()
