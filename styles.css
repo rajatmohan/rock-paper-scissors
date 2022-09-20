@@ -19,7 +19,6 @@ header, footer {
 
 .header {
     height: 75px;
-    background-color: aqua;
 }
 
 .footer {
@@ -29,6 +28,10 @@ header, footer {
 main {
     flex: 1;
     background-color: antiquewhite;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
 }
 
 .mainHeader {
@@ -53,8 +56,20 @@ figure {
     gap: 4px;
 }
 
+figure:hover {
+    transform: scale(1.2);
+}
+
 img {
     height: 100px;
     width: auto;
     margin: 2px;
+}
+
+.round-result {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
 }

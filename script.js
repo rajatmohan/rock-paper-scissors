@@ -31,14 +31,16 @@ const playRound = (playerSelection, computerSelection) => {
 
 // displayRoundResult function display the result of one round
 const displayRoundResult = (playerSelection, computerSelection, result) => {
+
+    const roundResultEle = document.querySelector(".round-result")
     if(result === 0) {
-        console.log("Tie")
+        roundResultEle.textContent = "Tie" 
     }
     else if(result > 0) {
-        console.log(`You Won! ${playerSelection} beats ${computerSelection}`);
+        roundResultEle.textContent = `You Won! ${playerSelection} beats ${computerSelection}`;
     }
     else {
-        console.log(`You Loose! ${computerSelection} beats ${playerSelection}`);
+        roundResultEle.textContent = `You Loose! ${computerSelection} beats ${playerSelection}`;
     }
 }
 
@@ -76,5 +78,6 @@ options.forEach(option => {
         playerScoreEle.textContent = playerScore;
         computerScoreEle.textContent = computerScore;
         
+        displayRoundResult(playerSelection, computerSelection, result)
     })
 })
