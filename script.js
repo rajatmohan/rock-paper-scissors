@@ -46,28 +46,58 @@ const displayRoundResult = (playerSelection, computerSelection, result) => {
 
 
 // displayGameResult function display the result of game which consists of many rounds
-const displayGameResult = (playerScore, computerScore, totalRounds) => {
+const displayGameResult = (playerScore, computerScore) => {
+    const gameResultEle = document.querySelector(".game-result")
     if(playerScore == computerScore) {
-        console.log('Game Tie')
+        gameResultEle.textContent = 'Game Tie'
     }
     if(playerScore > computerScore) {
-        console.log(`You won the game, your won ${playerScore} rounds computer won ${computerScore} out of total ${totalRounds} rounds.`);
+        gameResultEle.textContent = 'Game won!';
     }
     else {
-        console.log(`You loose the game, your won ${playerScore} rounds computer won ${computerScore} out of total ${totalRounds} rounds.`);
+        gameResultEle.textContent = 'Game Lost!';
     }
 }
 
+const displayScore = (playerScore, computerScore)=> {
+    const computerScoreEle = document.querySelector("#computerScore")
+    const playerScoreEle = document.querySelector("#playerScore")
+    playerScoreEle.textContent = playerScore;
+    computerScoreEle.textContent = computerScore;
+}
 
 let playerScore = 0;
 let computerScore = 0;
+let maxScore = 5
 
-let options = document.querySelectorAll(".option")
-let playerScoreEle = document.querySelector("#playerScore")
-let computerScoreEle = document.querySelector("#computerScore")
+const options = document.querySelectorAll(".option")
 
+const restartButtonEle = document.querySelector("#restartButton")
+
+// Restart game
+restartButtonEle.addEventListener("click", ()=> {
+    playerScore = 0;
+    computerScore = 0;
+    displayScore(playerScore, computerScore);
+    
+    //reset round result
+    const roundResultEle = document.querySelector(".round-result")
+    roundResultEle.textContent = "";
+
+    // reset game result
+    const gameResultEle = document.querySelector(".game-result")
+    gameResultEle.textContent = "";
+})
+
+// Setting on click handler on each button to play game
 options.forEach(option => {
     option.addEventListener("click", (event) => {
+
+        // If any player reached maximum score do nothing
+        if(playerScore === maxScore || computerScore === maxScore) {
+            return;
+        }
+
         let playerSelection = option.getAttribute("key")
         let computerSelection = getComputerChoice();
         let result = playRound(playerSelection, computerSelection);
@@ -75,9 +105,12 @@ options.forEach(option => {
         playerScore += (result > 0)? 1: 0;
         computerScore += (result < 0)? 1: 0;
 
-        playerScoreEle.textContent = playerScore;
-        computerScoreEle.textContent = computerScore;
+        displayScore(playerScore, computerScore);
         
         displayRoundResult(playerSelection, computerSelection, result)
+        
+        if(playerScore === maxScore || computerScore === maxScore) {
+            displayGameResult(playerScore, computerScore);
+        }
     })
 })
